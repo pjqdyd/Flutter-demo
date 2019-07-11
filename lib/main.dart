@@ -20,36 +20,35 @@ class MyApp extends StatelessWidget {
 
 //主页内容区组件
 class HomeContent extends StatelessWidget {
-  //定义一个List对象数组
-  List listData = [
-    {"title": "标题一", "author": "作者1", "imageUrl": "images/face.jpg"},
-    {"title": "标题二", "author": "作者2", "imageUrl": "images/face.jpg"},
-    {"title": "标题三", "author": "作者3", "imageUrl": "images/face.jpg"}
-  ];
-
-  //抽离返回容器组件的方法, 用于在GridView.builder中遍历构建容器
-  Widget _getListData(context, index) {
-    return Container(
-      alignment: Alignment.center,
-      decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-      child: Column(
-        children: <Widget>[
-          Image.asset(listData[index]['imageUrl']),
-          Text(listData[index]['title'])
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return GridView.builder( //遍历构建动态网格
-      itemCount: listData.length,
-      itemBuilder: this._getListData,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, //分成两列
-        mainAxisSpacing: 10, //水平间距
-        crossAxisSpacing: 10, //列间距
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+      child: GridView.count(
+        crossAxisCount: 2,
+        childAspectRatio: 1.7,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+            child: Image.asset("images/face.jpg", fit: BoxFit.cover),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+            child: Image.asset("images/face.jpg", fit: BoxFit.cover),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+            child: Image.asset("images/face.jpg", fit: BoxFit.cover),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+            child: Image.asset("images/face.jpg", fit: BoxFit.cover),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+            child: Image.asset("images/face.jpg", fit: BoxFit.cover),
+          ),
+        ],
       ),
     );
   }
