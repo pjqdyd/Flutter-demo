@@ -27,42 +27,30 @@ class HomeContent extends StatelessWidget {
     {"title": "标题三", "author": "作者3", "imageUrl": "images/face.jpg"}
   ];
 
-  //返回容器列表组件的方法
-  List<Widget> _getListData() {
-    var tempList = listData.map((value) {
-      return Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-        child: Column(  //列布局,与ListView不同的是,不会固定大小
-          children: <Widget>[
-            Image.asset(value['imageUrl']),
-            Text(
-              value['title'],
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 10),
-            )
-          ],
-        ),
-      );
-    });
-    return tempList.toList();
+  //抽离返回容器组件的方法, 用于在GridView.builder中遍历构建容器
+  Widget _getListData(context, index) {
+    return Container(
+      alignment: Alignment.center,
+      decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+      child: Column(
+        children: <Widget>[
+          Image.asset(listData[index]['imageUrl']),
+          Text(listData[index]['title'])
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-        crossAxisCount: 2, //分成两列布局
-        crossAxisSpacing: 20, //列间距
-        mainAxisSpacing: 20, //行间距
-        padding: EdgeInsets.all(10), //内边距
-        //childAspectRatio: 0.7, //单个网格元素的宽高比
-        // children: <Widget>[
-        //   Text("HELLO"),
-        //   Text("HELLO"),
-        //   Text("HELLO"),
-        //   Text("HELLO"),
-        //   Text("HELLO"),
-        // ],
-        children: this._getListData());
+    return GridView.builder( //遍历构建动态网格
+      itemCount: listData.length,
+      itemBuilder: this._getListData,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2, //分成两列
+        mainAxisSpacing: 10, //水平间距
+        crossAxisSpacing: 10, //列间距
+      ),
+    );
   }
 }
