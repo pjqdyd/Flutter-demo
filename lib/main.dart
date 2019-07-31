@@ -22,18 +22,18 @@ class MyApp extends StatelessWidget {
 class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 500,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center, //水平轴的对齐方式
-        crossAxisAlignment: CrossAxisAlignment.center, //y轴的对齐方式
+    return Row(
         children: <Widget>[
-          IconContainer(Icons.search, color: Colors.blue), //调用自定义组件
-          IconContainer(Icons.home, color: Colors.orange),
-          IconContainer(Icons.select_all, color: Colors.red)
+          Expanded(
+            flex: 1,
+            child: IconContainer(Icons.search, color: Colors.blue)
+          ),
+          Expanded(
+            flex: 2,
+            child: IconContainer(Icons.home, color: Colors.orange)
+          ),  
         ],
-      ),
-    );
+      );
   }
 }
 
