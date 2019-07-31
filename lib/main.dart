@@ -22,39 +22,59 @@ class MyApp extends StatelessWidget {
 class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Row(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: IconContainer(Icons.search, color: Colors.blue)
-          ),
-          Expanded(
-            flex: 2,
-            child: IconContainer(Icons.home, color: Colors.orange)
-          ),  
-        ],
-      );
-  }
-}
+    return Column(
+      children: <Widget>[
 
-//自定义的图标容器组件
-class IconContainer extends StatelessWidget {
-  double size = 32.0;
-  Color color = Colors.blue;
-  IconData icon;
+        Row(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                height: 180,
+                color: Colors.black,
+                child: Text("Hello Flutter", textAlign: TextAlign.center,),
+              ),
+            )
+          ],
+        ),
 
-  //覆盖构造器, icon必传, color和size可选命名参数
-  IconContainer(this.icon, {this.color, this.size});
+        SizedBox(height: 10),
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      width: 100,
-      color: this.color,
-      child: Center(
-        child: Icon(this.icon, size: this.size, color: Colors.white),
-      ),
+        Row(
+          children: <Widget>[
+
+            Expanded(
+              flex: 2,
+              child: Container(
+                height: 180,
+                child: Image.asset("images/face.jpg", fit: BoxFit.cover),
+              ),
+            ),
+
+            SizedBox(width: 10),
+
+            Expanded(
+              flex: 1,
+              child: Container(
+                height: 180,
+                child: ListView(
+                  children: <Widget>[
+                    Container(
+                      height: 85,
+                      child: Image.asset("images/face.jpg", fit: BoxFit.cover),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      height: 85,
+                      child: Image.asset("images/face.jpg", fit: BoxFit.cover),
+                    )
+                  ],
+                ),
+              ),
+            )
+
+          ],
+        )
+      ],
     );
   }
 }
