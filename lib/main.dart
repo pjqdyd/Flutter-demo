@@ -18,72 +18,41 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// //主页内容区组件
-// class HomeContent extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       width: 300,
-//       child: AspectRatio(   //配置子元素的宽高比
-//         aspectRatio: 2.0/1.0,
-//         child: Container(
-//           color: Colors.red,
-//         )
-//       ),
-//     );
-//   }
-// }
-
 //主页内容区组件
 class HomeContent extends StatelessWidget {
+
+  //定义一个List对象数组
+  List listData = [
+    {"title": "标题一", "author": "作者1", "imageUrl": "images/face.jpg"},
+    {"title": "标题二", "author": "作者2", "imageUrl": "images/face.jpg"},
+    {"title": "标题三", "author": "作者3", "imageUrl": "images/face.jpg"}
+  ];
+
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: <Widget>[
-        Card(
+      children: listData.map((value){ //循环数据, 渲染卡片
+
+        return Card(
           margin: EdgeInsets.all(10),
           child: Column(
             children: <Widget>[
-
-              ListTile(
-                title: Text("张三", style: TextStyle(fontSize: 28)),
-                subtitle: Text("这是展示信息"),
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Image.asset(value["imageUrl"], fit: BoxFit.cover),
               ),
               ListTile(
-                title: Text("电话", style: TextStyle(fontSize: 28)),
-                subtitle: Text("这是展示信息"),
-              ),
-              ListTile(
-                title: Text("地址", style: TextStyle(fontSize: 28)),
-                subtitle: Text("这是展示信息"),
-              ),
-
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage(value["imageUrl"]),
+                ),
+                title: Text(value["title"]),
+                subtitle: Text(value["author"], maxLines: 2, overflow: TextOverflow.ellipsis,),
+              )
             ],
-          )
-        ),
+          ),
+        );
 
-        Card(
-          margin: EdgeInsets.all(10),
-          child: Column(
-            children: <Widget>[
-
-              ListTile(
-                title: Text("王五", style: TextStyle(fontSize: 28)),
-                subtitle: Text("这是展示信息"),
-              ),
-              ListTile(
-                title: Text("电话", style: TextStyle(fontSize: 28)),
-                subtitle: Text("这是展示信息"),
-              ),
-              ListTile(
-                title: Text("地址", style: TextStyle(fontSize: 28)),
-                subtitle: Text("这是展示信息"),
-              ),
-
-            ],
-          )
-        ),
-      ],
+      }).toList(),
     );
   }
 }
