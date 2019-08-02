@@ -16,6 +16,12 @@ class SearchPage extends StatelessWidget {
         title: Text("搜索页面")
       ),
       body: Text("搜索页面内容区域--${this.keyWord}"),
+      floatingActionButton: FloatingActionButton( //浮动按钮
+        child: Text("返回"),
+        onPressed: (){
+          Navigator.of(context).pop(); //退出当前堆, 返回上一页
+        },
+      ),
     );
   }
 }

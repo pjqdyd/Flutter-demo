@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       child: RaisedButton(
             child: Text("跳转到搜索页面"),
             onPressed: (){
-              Navigator.of(context).push( //路由跳转
+              Navigator.of(context).push( //路由跳转, 通过组件的初始化构造器传参数
                 MaterialPageRoute(
                   builder: (context) => SearchPage(keyWord: "参数1")
                 )
