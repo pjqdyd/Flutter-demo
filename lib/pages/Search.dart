@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class SearchPage extends StatelessWidget {
 
-  String keyWord;
+  final arguments;
 
-  SearchPage({this.keyWord = "默认"}); //构造方法, 接收参数
+  SearchPage({this.arguments}); //构造方法, 接收参数对象
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class SearchPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("搜索页面")
       ),
-      body: Text("搜索页面内容区域--${this.keyWord}"),
+      body: Text("搜索页面内容区域--${arguments != null ? arguments['id'] : '0'}"),
       floatingActionButton: FloatingActionButton( //浮动按钮
         child: Text("返回"),
         onPressed: (){
