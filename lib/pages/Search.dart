@@ -25,3 +25,11 @@ class SearchPage extends StatelessWidget {
     );
   }
 }
+
+//提示 如果是有状态组件接收参数Map arguments,如下写法:
+// Map arguments;
+//  createStates() =>  _SearchPageState(arguments: this.arguments);
+
+// Map arguments;
+// __SearchPageState({this.arguments});
+//使用${arguments['id']}
