@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-
-import 'pages/Search.dart';
+import 'routes/Routes.dart';
 
 void main() => runApp(MyApp());
 
 //MyApp组件
 class MyApp extends StatelessWidget {
-
-  //定义常量命名路由
-  final routers = {
-    '/search': (context, {arguments}) => SearchPage(arguments: arguments),
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -22,29 +16,13 @@ class MyApp extends StatelessWidget {
         body: HomePage(),
       ),
 
-      // routes: { //Routers必须定义在根组件中 (命名路由)
+      // routes: { //routers必须定义在根组件中 (命名路由)
       //   '/search': (context)=> SearchPage(),
       // },
 
-      //监听路由实现命名路由可传参数 (固定写法,直接复制即可)
-      onGenerateRoute: (RouteSettings settings){
+      initialRoute: "/", //初始化时加载的路由
+      onGenerateRoute: onGenerateRoute //调用Routes.dart中的可传参数方法
 
-          //统一处理
-          final String name = settings.name;
-          final Function pageContentBuilder = this.routers[name]; //获取返回路由的构建方法
-          if(pageContentBuilder != null){
-            if(settings.arguments != null){ //参数不为空
-              final Route route = MaterialPageRoute(builder: (context) =>
-              pageContentBuilder(context, arguments: settings.arguments));
-              return route;
-            }else{
-              final Route route = MaterialPageRoute(
-                builder: (context) => pageContentBuilder(context));
-                return route;
-            }
-          }
-
-      },
     );
   }
 }
