@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       //   '/search': (context)=> SearchPage(),
       // },
 
-      initialRoute: "/", //初始化时加载的路由
+      //initialRoute: "/", //初始化时加载的路由
       onGenerateRoute: onGenerateRoute //调用Routes.dart中的可传参数方法
 
     );
