@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: (){
               Navigator.of(context).push( //路由跳转
                 MaterialPageRoute(
-                  builder: (context) => SearchPage()
+                  builder: (context) => SearchPage(keyWord: "参数1")
                 )
               );
             },
