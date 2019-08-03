@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import '../pages/Home.dart';
 import '../pages/user/Login.dart';
 import '../pages/user/Register.dart';
-import '../pages/Search.dart';
 
 //定义常量命名路由
 final routers = {
   '/': (context) => HomePage(),
   '/register': (context) => RegisterPage(),
   '/login': (context) => LoginPage(),
-  '/search': (context, {arguments}) => SearchPage(arguments: arguments),
+  //'/search': (context, {arguments}) => SearchPage(arguments: arguments),
 };
 
 //监听路由实现命名路由可传参数的方法 (固定写法,直接复制即可)

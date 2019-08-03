@@ -13,25 +13,28 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Home主页"),
-      ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            RaisedButton(
-              child: Text("跳转到搜索页面"),
-              onPressed: () {
-                //Navigator.pushNamed(context, "/search");
-                Navigator.pushNamed(context, "/search", arguments: {'id': 123});
-              },
-            ),
-            RaisedButton(
-              child: Text("跳转到注册页面"),
-              onPressed: () {
-                Navigator.pushNamed(context, "/register");
-              },
-            )
-          ],
+
+        //centerTitle: true,
+
+        //backgroundColor: Colors.green,
+
+        //leading: Icon(Icons.menu),  //左侧普通图标
+
+        leading: IconButton(  //左侧按钮图标
+          icon: Icon(Icons.menu),
+          onPressed: () {},
         ),
+
+        actions: <Widget>[ //右侧图标组
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          ),
+        ],
+      ),
+
+      body: Center(
+        child: Text("主页"),
       ),
     );
   }
