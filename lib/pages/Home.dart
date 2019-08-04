@@ -11,73 +11,105 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("主页"),
-      ),
-      body: Center(
-        child: Text("主页"),
-      ),
-      drawer: Drawer(   //左侧边栏
-        child: Column(
-          children: <Widget>[
-            // DrawerHeader(
-            //   child: Text("头部"),
-            // ),
-            Row(
-              //头部自动扩展
-              children: <Widget>[
-                Expanded(
-                  child: DrawerHeader(
-                    child: Text("头部"),
-                    decoration: BoxDecoration(
-                      color: Colors.yellow,
-                      //image: DecorationImage(image: ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            ListTile(
-              leading: CircleAvatar(child: Icon(Icons.people)),
-              title: Text("用户中心"),
-            ),
-            Divider(), //线条
-            ListTile(
-              leading: CircleAvatar(child: Icon(Icons.people)),
-              title: Text("用户中心"),
-            ),
-            Divider(),
-            ListTile(
-              leading: CircleAvatar(child: Icon(Icons.people)),
-              title: Text("用户登录"),
-              onTap: (){
-                Navigator.of(context).pop(); //隐藏侧边栏
-                Navigator.pushNamed(context, "/login");
-              },
-            )
-          ],
+        appBar: AppBar(
+          title: Text("主页"),
         ),
-      ),
+        body: Center(
+          child: Column(
+            children: <Widget>[
+              RaisedButton(
+                child: Text("突起按钮"),
+                color: Colors.blue,
+                textColor: Colors.white,
+                //disabledColor: ,
+                //disabledTextColor: ,
+                //splashColor: , //点击时水波纹颜色'
+                //highlightColor: , //点击长按后的颜色
+                //elevation: , //阴影范围
+                //装在Container容器中就可以设置宽高, Expanded自适应
+                onPressed: () {},
+              ),
 
-      endDrawer: Drawer( //右侧边栏
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: UserAccountsDrawerHeader( //默认用户侧边栏头部
-                    accountName: Text("名字"),
-                    accountEmail: Text("邮箱"),
-                    currentAccountPicture: CircleAvatar(
-                      backgroundImage: AssetImage("images/face.jpg"),
-                    ),
-                    //decoration: , //样式
+              RaisedButton(
+                child: Text("圆角按钮"),
+                shape: RoundedRectangleBorder( //按钮形状, 圆角
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                onPressed: () {},
+              ),
+
+              RaisedButton.icon(
+                icon: Icon(Icons.settings),
+                label: Text("图标按钮"),
+                // shape: CircleBorder( //形状圆形, 边框颜色
+                //   side: BorderSide(color: Colors.white),
+                // ),
+                onPressed: () {},
+              ),
+
+              FlatButton(
+                child: Text("扁平按钮"),
+                color: Colors.blue,
+                onPressed: (){},
+              ),
+
+              OutlineButton(
+                child: Text("边框按钮"),
+                onPressed: (){},
+              ),
+
+              IconButton( //按钮图标
+                icon: Icon(Icons.send),
+                color: Colors.blue,
+                onPressed: (){},
+              ),
+
+              ButtonBar( //按钮组
+                alignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  RaisedButton(
+                    child: Text("按钮1"),
+                    onPressed: (){},
                   ),
-                )
-              ],
-            )
-          ],
-        ),
+                  RaisedButton(
+                    child: Text("按钮2"),
+                    onPressed: (){},
+                  )
+               ],
+             ),
+
+              FloatingActionButton(
+               child: Text("浮动"),
+               onPressed: (){},
+             ),
+
+              MyButton(text: "自定义按钮", height: 30, width: 120, pressed: (){print("--");},)
+
+            ],
+          ),
+        ));
+  }
+}
+
+//自定义按钮
+class MyButton extends StatelessWidget {
+  final text; //文本
+  final double height;
+  final double width;
+  final pressed; //点击函数
+
+  //按钮构造器
+  const MyButton({this.text = "", this.pressed = null, 
+  this.height = 50.0, this.width = 100.0});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: this.width,
+      height: this.height,
+      child: RaisedButton(
+        child: Text(this.text),
+        onPressed: this.pressed,
       ),
     );
   }
