@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../pages/TabBarController.dart';
 import '../pages/Home.dart';
 import '../pages/user/Login.dart';
 import '../pages/user/Register.dart';
@@ -8,6 +9,7 @@ final routers = {
   '/': (context) => HomePage(),
   '/register': (context) => RegisterPage(),
   '/login': (context) => LoginPage(),
+  '/tabBarController': (context) => TabBarControllerPage()
   //'/search': (context, {arguments}) => SearchPage(arguments: arguments),
 };
 
