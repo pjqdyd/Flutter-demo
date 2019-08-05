@@ -1,4 +1,4 @@
-# Flutter_new_app 的案例
+# Flutter_new_app
 
 ## Flutter 的Widget组件[demo案例](https://github.com/pjqdyd/Flutter-demo/tree/master/Flutter%E7%BB%84%E4%BB%B6demo%E6%A1%88%E4%BE%8B).
 
