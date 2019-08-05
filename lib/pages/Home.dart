@@ -9,16 +9,21 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  int _currentIndex = 0;
+  //文本输出框的控制值对象 (如果有初始值就要这样写)
+  var _username = new TextEditingController();
 
-  //定义页面的集合, Text()代表是一个单独的页面组件
-  List _pageList = [
-    Text("这是主页组件"),
-    Text("这是分类组件"),
-    Text("这是添加组件"),
-    Text("这是设置组件"),
-    Text("这是个人组件")
-  ];
+  //或者直接定义值
+  String password;
+
+  var flag = false;
+  int sex = 1;
+  int count = 1;
+
+  @override
+  void initState() { 
+    super.initState();
+    _username.text = "初始值";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,51 +31,176 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("主页"),
       ),
-      body: this._pageList[this._currentIndex], //body为对应的页面
+      body: Padding(
+        padding: EdgeInsets.all(10),
+        child: ListView(
+          children: <Widget>[
 
-      //浮动按钮
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.add),
-      //   onPressed: (){},
-      // ),
-      floatingActionButton: Container(
-        height: 60,
-        width: 60,
-        padding: EdgeInsets.all(6),
-        margin: EdgeInsets.only(top: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.white,
-        ),
-        child: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: (){
-            setState(() {
-            this._currentIndex = 2;
-          });
-          },
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            TextField(//文本输入框（绑定值控制器）
+              controller: _username,
+              onChanged: (value){
+               setState(() {
+                  this._username.text = value;
+               });
+              },
+            ),
+            Container(
+              width: double.infinity, //自适应
+              child: RaisedButton(
+                child: Text("提交1"),
+                onPressed: (){
+                  print(this._username.text);
+                },
+              ),
+            ),
+            SizedBox(height: 10),
 
-      bottomNavigationBar: BottomNavigationBar(//底部选项卡
-        iconSize: 25.0,
-        currentIndex: this._currentIndex,
-        type: BottomNavigationBarType.fixed, //超过3个就要设置
-        selectedFontSize: 11,
-        unselectedFontSize: 10,
-        onTap: (int index) { //点击改变激活的下标
-          setState(() {
-            this._currentIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页")),
-          BottomNavigationBarItem(icon: Icon(Icons.category), title: Text("分类")),
-          BottomNavigationBarItem(icon: Icon(Icons.add), title: Text("添加")),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text("设置")),
-          BottomNavigationBarItem(icon: Icon(Icons.people), title: Text("个人"))
-        ],
+            TextField(//文本输入框（直接绑定值）
+              onChanged: (value){
+               setState(() {
+                  this.password = value;
+               });
+              },
+            ),
+            Container(
+              width: double.infinity, //自适应
+              child: RaisedButton(
+                child: Text("提交2"),
+                onPressed: (){
+                  print(this.password);
+                },
+              ),
+            ),
+            SizedBox(height: 10),
+
+            TextField(//多行文本输入框
+              maxLength: 100,
+              maxLines: 3,
+              decoration: InputDecoration(
+                hintText: "请输入..",
+                border: OutlineInputBorder() //是否显示边框
+              ),
+            ),
+            SizedBox(height: 10),
+
+            TextField(//密码输入框
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: "请输入密码..",
+              ),
+            ),
+            SizedBox(height: 10),
+
+            TextField(//标签输入框
+              decoration: InputDecoration(
+                labelText: "用户名:",
+                hintText: "请输入用户名..",
+              ),
+            ),
+            SizedBox(height: 10),
+
+            TextField(//带图标输入框
+              decoration: InputDecoration(
+                icon: Icon(Icons.people),
+                hintText: "请输入用户名..",
+              ),
+            ),
+            SizedBox(height: 10),
+ 
+            Checkbox( //多选框
+              value: this.flag,
+              activeColor: Colors.yellow,
+              onChanged: (val){
+                setState(() {
+                 this.flag = val;
+                });
+              },
+            ),
+            SizedBox(height: 10),
+
+            CheckboxListTile( //多选框和ListTile结合
+              value: this.flag,
+              onChanged: (val){
+                setState(() {
+                 this.flag = val;
+                });
+              },
+              title: Text("这是标题"),
+              subtitle: Text("这是2级标题"),
+              secondary: Icon(Icons.help),
+            ),
+            SizedBox(height: 10),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[ //单选框 (选框要大于1个)
+                Text("男:"),
+                Radio(
+                  value: 1,
+                  groupValue: this.sex,
+                  onChanged: (val){
+                    setState(() {
+                      this.sex = val; 
+                    });
+                  },
+                ),
+                SizedBox(width: 20),
+                Text("女:"),
+                Radio(
+                  value: 2,
+                  groupValue: this.sex,
+                  onChanged: (val){
+                    setState(() {
+                      this.sex = val; 
+                    });
+                  },
+                )
+              ],
+            ),
+            SizedBox(height: 10),
+
+            RadioListTile(//单选框和ListTile结合(groupValue表示组)
+              value: 1,
+              groupValue: this.count,
+              title: Text("标题"),
+              subtitle: Text("子标题"),
+              secondary: Icon(Icons.flag),
+              selected: this.count == 1,
+              onChanged: (val){
+                setState(() {
+                  this.count = val; 
+                });
+              },
+            ),
+            SizedBox(width: 20),
+            RadioListTile(
+              value: 2,
+              groupValue: this.count,
+              title: Text("标题"),
+              subtitle: Text("子标题"),
+              selected: this.count == 2,
+              secondary: Icon(Icons.flag),
+              onChanged: (val){
+                setState(() {
+                  this.count = val; 
+                });
+              },
+            ),
+            SizedBox(height: 10),
+
+           Row(
+             children: <Widget>[
+              Switch( //开关
+                value: this.flag,
+                onChanged: (val){
+                  this.flag = val;
+                },
+              ),
+             ],
+           )
+
+          ],
+        ),
       ),
     );
   }
