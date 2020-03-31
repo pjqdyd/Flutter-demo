@@ -1,18 +1,15 @@
-# Flutter_new_app
+## Flutter 的Widget组件[demo案例](./Flutter组件案例).
 
-## Flutter 的Widget组件[demo案例](https://github.com/pjqdyd/Flutter-demo/tree/master/Flutter%E7%BB%84%E4%BB%B6demo%E6%A1%88%E4%BE%8B).
+### 开发环境:
+  > Flutter v1.12.13+hotfix.5<br>
+  >参考: [Fluter中文文档](https://flutterchina.club/get-started/install/).
 
-A new Flutter application.
+### 如何运行:
+   1. 确保安装好FlutterSdk开发环境,cmd查看命令`flutter doctor`.
 
-## Getting Started
+   2. 在项目根目录下运行`flutter pub get`下载依赖包.
 
-This project is a starting point for a Flutter application.
+   3. 连接好设备后, 在项目目录下运行`flutter run`即可.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+   4. 运行查看不同的Widget组件: 进入[Flutter组件案例](./Flutter组件案例)目录下, 替换对应的main.dart或
+      lib目录即可查看不同的组件(需要修改组件文件名成main.dart或lib).
